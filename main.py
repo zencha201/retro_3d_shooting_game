@@ -144,12 +144,18 @@ class App:
         else:
             self.update_game_over()
 
+    def is_action_pressed(self) -> bool:
+        return pyxel.btnp(pyxel.KEY_SPACE) or pyxel.btnp(pyxel.GAMEPAD1_BUTTON_A)
+
+    def is_action_held(self) -> bool:
+        return pyxel.btn(pyxel.KEY_SPACE) or pyxel.btn(pyxel.GAMEPAD1_BUTTON_A)
+
     def update_title(self) -> None:
-        if pyxel.btnp(pyxel.KEY_SPACE):
+        if self.is_action_pressed():
             self.reset_game()
 
     def update_game_over(self) -> None:
-        if pyxel.btnp(pyxel.KEY_SPACE):
+        if self.is_action_pressed():
             self.state = STATE_TITLE
 
     def update_game(self) -> None:
@@ -200,7 +206,7 @@ class App:
         if self.bullet_cooldown > 0:
             self.bullet_cooldown -= 1
 
-        if pyxel.btn(pyxel.KEY_SPACE) and self.bullet_cooldown == 0:
+        if self.is_action_held() and self.bullet_cooldown == 0:
             spawn_z = self.player_z + 5.0
             self.bullets.append(
                 Bullet(
