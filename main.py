@@ -365,7 +365,7 @@ class App:
 
     def draw_title(self) -> None:
         pyxel.text(96, 40, "3D SHOOTING", pyxel.COLOR_WHITE)
-        pyxel.text(58, 204, "PRESS SPACE TO START", pyxel.COLOR_YELLOW)
+        pyxel.text(46, 204, "PRESS SPACE OR A TO START", pyxel.COLOR_YELLOW)
 
         angle = self.frame * 0.05
         self.draw_wire_pyramid(0.0, 0.0, 80.0, 11.0, pyxel.COLOR_WHITE, yaw=angle)
